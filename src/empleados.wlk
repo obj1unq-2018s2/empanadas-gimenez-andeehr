@@ -45,6 +45,10 @@ object nuevoBaigorria {
 	var sueldo = 15000
 	var dinero = 0
 	var deuda = 0
+	method sueldo(){
+		return sueldo
+	}
+	
 	method gastar(cuanto){
 		if (dinero > cuanto)
 			dinero -= cuanto

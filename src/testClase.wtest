@@ -1,0 +1,46 @@
+import empleados.*
+
+test "inicio sueldo baigorria"	{
+	assert.equals(15000, nuevoBaigorria.sueldo())
+}
+
+test "baigorria gasta 4000" {
+	nuevoBaigorria.gastar(4000)
+	assert.equals(4000, nuevoBaigorria.totalDeuda())
+	assert.equals(0, nuevoBaigorria.totalDinero())
+}
+
+test "baigorria gasta 8000" {
+	nuevoBaigorria.gastar(4000)
+	nuevoBaigorria.gastar(8000)
+	assert.equals(12000, nuevoBaigorria.totalDeuda())
+	assert.equals(0, nuevoBaigorria.totalDinero())	
+}
+
+test "baigorria cobra"{
+	nuevoBaigorria.gastar(4000)
+	nuevoBaigorria.gastar(8000)
+	nuevoBaigorria.cobrar()
+	assert.equals(0, nuevoBaigorria.totalDeuda())
+	assert.equals(3000, nuevoBaigorria.totalDinero())	
+}
+
+test "baigorria gasta 25000" {
+	nuevoBaigorria.gastar(4000)
+	nuevoBaigorria.gastar(8000)
+	nuevoBaigorria.cobrar()
+	nuevoBaigorria.gastar(25000)
+	assert.equals(22000, nuevoBaigorria.totalDeuda())
+	assert.equals(0, nuevoBaigorria.totalDinero())		
+}
+
+test "baigorria cobra nuevamente" {
+	nuevoBaigorria.gastar(4000)
+	nuevoBaigorria.gastar(8000)
+	nuevoBaigorria.cobrar()
+	nuevoBaigorria.gastar(25000)
+	nuevoBaigorria.cobrar()
+	assert.equals(7000, nuevoBaigorria.totalDeuda())
+	assert.equals(0, nuevoBaigorria.totalDinero())	
+	
+}
