@@ -1,46 +1,51 @@
 import empleados.*
 
-test "inicio sueldo baigorria"	{
-	assert.equals(15000, nuevoBaigorria.sueldo())
-}
+describe "Finanzas Baigorria"{
 
-test "baigorria gasta 4000" {
-	nuevoBaigorria.gastar(4000)
-	assert.equals(4000, nuevoBaigorria.totalDeuda())
-	assert.equals(0, nuevoBaigorria.totalDinero())
-}
+	test "Baigorria arranca con 15000 de sueldo, deuda en 0, dinero en 0."	{
+		assert.equals(15000, nuevoBaigorria.sueldo())
+	}
 
-test "baigorria gasta 8000" {
-	nuevoBaigorria.gastar(4000)
-	nuevoBaigorria.gastar(8000)
-	assert.equals(12000, nuevoBaigorria.totalDeuda())
-	assert.equals(0, nuevoBaigorria.totalDinero())	
-}
+	test "Baigorria gasta 4000, totalDeuda() debe ser 4000, totalDinero() debe ser 0." {
+		nuevoBaigorria.gastar(4000)
+		assert.equals(4000, nuevoBaigorria.totalDeuda())
+		assert.equals(0, nuevoBaigorria.totalDinero())
+	}
 
-test "baigorria cobra"{
-	nuevoBaigorria.gastar(4000)
-	nuevoBaigorria.gastar(8000)
-	nuevoBaigorria.cobrar()
-	assert.equals(0, nuevoBaigorria.totalDeuda())
-	assert.equals(3000, nuevoBaigorria.totalDinero())	
-}
+	test "Baigorria gasta otros 8000, totalDeuda() pasa a 12000, totalDinero() sigue en 0." {
+		nuevoBaigorria.gastar(4000)
+		nuevoBaigorria.gastar(8000)
+		assert.equals(12000, nuevoBaigorria.totalDeuda())
+		assert.equals(0, nuevoBaigorria.totalDinero())	
+	}
 
-test "baigorria gasta 25000" {
-	nuevoBaigorria.gastar(4000)
-	nuevoBaigorria.gastar(8000)
-	nuevoBaigorria.cobrar()
-	nuevoBaigorria.gastar(25000)
-	assert.equals(22000, nuevoBaigorria.totalDeuda())
-	assert.equals(0, nuevoBaigorria.totalDinero())		
-}
-
-test "baigorria cobra nuevamente" {
-	nuevoBaigorria.gastar(4000)
-	nuevoBaigorria.gastar(8000)
-	nuevoBaigorria.cobrar()
-	nuevoBaigorria.gastar(25000)
-	nuevoBaigorria.cobrar()
-	assert.equals(7000, nuevoBaigorria.totalDeuda())
-	assert.equals(0, nuevoBaigorria.totalDinero())	
+	test "Baigorria cobra, con los 15000 que recibe paga toda su deuda y le sobran 3000 pesos.
+	Por lo tanto, totalDeuda() debe ser 0, y totalDinero() debe ser 3000."{
+		nuevoBaigorria.gastar(4000)
+		nuevoBaigorria.gastar(8000)
+		nuevoBaigorria.cobrar()
+		assert.equals(0, nuevoBaigorria.totalDeuda())
+		assert.equals(3000, nuevoBaigorria.totalDinero())	
+	}
 	
+	test "Baigorria gasta 25000, cubre 3000 con el dinero que tiene, el resto es deuda.
+	totalDeuda() queda en 22000, totalDinero() en 0." {
+		nuevoBaigorria.gastar(4000)
+		nuevoBaigorria.gastar(8000)
+		nuevoBaigorria.cobrar()
+		nuevoBaigorria.gastar(25000)
+		assert.equals(22000, nuevoBaigorria.totalDeuda())
+		assert.equals(0, nuevoBaigorria.totalDinero())		
+	}
+
+	test "Baigorria cobra, tiene que dedicar los 15000 a pagar deudas, y no le alcanza.
+	Ahora, totalDeuda() pasa a 7000, y totalDinero() a 0." {
+		nuevoBaigorria.gastar(4000)
+		nuevoBaigorria.gastar(8000)
+		nuevoBaigorria.cobrar()
+		nuevoBaigorria.gastar(25000)
+		nuevoBaigorria.cobrar()
+		assert.equals(7000, nuevoBaigorria.totalDeuda())
+		assert.equals(0, nuevoBaigorria.totalDinero())	
+	}	
 }

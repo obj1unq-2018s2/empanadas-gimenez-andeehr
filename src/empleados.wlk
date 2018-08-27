@@ -41,7 +41,6 @@ object galvan {
 
 object nuevoBaigorria {
 // Corresponde al ejercicio 'Manejo fino de las finanzas de Baigorria'
-// para no modificar el otro
 	var sueldo = 15000
 	var dinero = 0
 	var deuda = 0
